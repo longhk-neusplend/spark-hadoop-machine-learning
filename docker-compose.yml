@@ -20,6 +20,8 @@ services:
     image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
     container_name: datanode
     restart: always
+    ports:
+      - 9864:9864
     volumes:
       - ./hadoop/hadoop_datanode:/hadoop/dfs/data
     environment:
@@ -42,6 +44,8 @@ services:
     image: bde2020/hadoop-nodemanager:2.0.0-hadoop3.2.1-java8
     container_name: nodemanager
     restart: always
+    ports:
+      - 8042:8042
     environment:
       SERVICE_PRECONDITION: "namenode:9000 namenode:9870 datanode:9864 resourcemanager:8088"
     env_file:
@@ -68,8 +72,8 @@ services:
       - "9090:8080"
       - "7077:7077"
     volumes:
-       - ./spark-cluster/apps:/opt/spark-apps
-       - ./spark-cluster/data:/opt/spark-data
+       - ./spark-cluster-v2/apps:/opt/spark-apps
+       - ./spark-cluster-v2/data:/opt/spark-data
     environment:
       - SPARK_LOCAL_IP=spark-master
       - SPARK_WORKLOAD=master
@@ -90,8 +94,8 @@ services:
       - SPARK_WORKLOAD=worker
       - SPARK_LOCAL_IP=spark-worker-a
     volumes:
-       - ./spark-cluster/apps:/opt/spark-apps
-       - ./spark-cluster/data:/opt/spark-data
+       - ./spark-cluster-v2/apps:/opt/spark-apps
+       - ./spark-cluster-v2/data:/opt/spark-data
   spark-worker-b:
     image: cluster-apache-spark:3.0.2
     restart: always
@@ -109,8 +113,8 @@ services:
       - SPARK_WORKLOAD=worker
       - SPARK_LOCAL_IP=spark-worker-b
     volumes:
-        - ./spark-cluster/apps:/opt/spark-apps
-        - ./spark-cluster/data:/opt/spark-data
+        - ./spark-cluster-v2/apps:/opt/spark-apps
+        - ./spark-cluster-v2/data:/opt/spark-data
   demo-database:
     image: postgres:11.7-alpine
     restart: always

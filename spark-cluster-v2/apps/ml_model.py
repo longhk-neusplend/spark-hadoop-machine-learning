@@ -90,10 +90,10 @@ model =rf.fit(training_data)
 predictions = model.transform(test_data)
 predictions.show()
 
-evaluator = MulticlassClassificationEvaluator(
-    labelCol='Survived',
-    predictionCol='prediction',
-    metricName='accuracy'
-)
-accuracy = evaluator.evaluate(predictions)
-print('Test Accuracy =',accuracy)
+# evaluator = MulticlassClassificationEvaluator(
+#     labelCol='Survived',
+#     predictionCol='prediction',
+#     metricName='accuracy'
+# )
+# accuracy = evaluator.evaluate(predictions)
+# print('Test Accuracy =',accuracy)
