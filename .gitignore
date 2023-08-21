@@ -1,0 +1,13 @@
+# Personal data
+file01
+file02
+note.txt
+
+# Hadoop files
+/hadoop/hadoop_datanode/*
+/hadoop/hadoop_historyserver/*
+/hadoop/hadoop_namenode/*
+
+# Images file
+/images
+
